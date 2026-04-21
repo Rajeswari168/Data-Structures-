@@ -1,0 +1,75 @@
+import java.util.*;
+class Node {
+    int data;
+    Node next;
+    Node(int data) {
+        this.data = data;
+        next = null;
+    }
+}
+class CLL {
+    Node head = null;
+    Node temp = null;
+    void create(int data) {
+        Node newnode = new Node(data);
+        if (head == null) {
+            head = newnode;
+            temp = newnode;
+            newnode.next = head; 
+        } else {
+            temp.next = newnode;
+            temp = newnode;
+            temp.next = head; 
+        }
+    }
+    void insertion_at_front(int data) {
+        Node newnode = new Node(data);
+        newnode.next = head;
+        temp.next = newnode;  // last node should point to new head
+        head = newnode;
+    }
+    void insertion_at_end(int data) {
+        Node newnode = new Node(data);
+        temp.next = newnode;
+        temp = newnode;
+        temp.next = head;
+    }
+
+    void insertion_at_position(int data, int pos) {
+        Node newnode = new Node(data);
+        Node temp = head;
+        for (int i = 1; i < pos - 1; i++) {
+            temp = temp.next;
+        }
+        newnode.next = temp.next;
+        temp.next = newnode;
+        temp = newnode;
+    }
+    void display() {
+        Node temp = head;
+        while(temp.next != head){
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        } 
+        System.out.print(temp.data);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        CLL obj = new CLL();
+        for (int i = 0; i < size; i++) {
+            obj.create(sc.nextInt());
+        }
+        int frontval = sc.nextInt();
+        obj.insertion_at_front(frontval);
+        int midval = sc.nextInt();
+        int pos = sc.nextInt();
+        obj.insertion_at_position(midval, pos);
+        int endval = sc.nextInt();
+        obj.insertion_at_end(endval);
+
+        obj.display();
+    }
+}
