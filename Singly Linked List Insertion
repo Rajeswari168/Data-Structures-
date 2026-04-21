@@ -1,0 +1,73 @@
+import java.util.*;
+class Node {
+    int data;
+    Node next;
+    Node(int data) {
+        this.data=data;
+        next=null;
+    }
+}
+class SLL {
+    Node head=null;
+    Node temp=null;
+    void create(int data) {
+        Node newnode=new Node(data);
+        if (head==null) {
+            head=newnode;
+            temp=newnode;
+        }else{
+            temp.next=newnode;
+            temp=newnode;
+        }
+    }
+    void insertion_at_front(int data) {
+        Node newnode=new Node(data);
+        newnode.next=head;
+        head=newnode;
+    }
+    void insertion_at_end(int data) {
+        Node temp=head;
+        Node newnode=new Node(data);
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.next=newnode;
+    }
+    void insertion_at_position(int data,int pos) {
+        Node newnode = new Node(data);
+        Node temp=head;
+        for(int i=0;i<pos;i++) {
+            temp=temp.next;
+        }
+        newnode.next=temp.next;
+        temp.next=newnode;
+    }
+    void display() {
+        Node temp=head;
+        while(temp != null) {
+            System.out.print(temp.data + " ");
+            temp=temp.next;
+        }
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter size: ");
+        int size=sc.nextInt();
+        SLL obj=new SLL();
+        System.out.print("Enter elements:");
+        for (int i=0;i<size;i++) {
+            int val=sc.nextInt();
+            obj.create(val);
+        }
+        int frontval=sc.nextInt();
+        obj.insertion_at_front(frontval);
+        int midval=sc.nextInt();
+        int pos=sc.nextInt();
+        obj.insertion_at_position(midval, pos);
+        int endval=sc.nextInt();
+        obj.insertion_at_end(endval);
+        obj.display();
+    }
+}
