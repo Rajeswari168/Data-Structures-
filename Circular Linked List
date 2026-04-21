@@ -1,0 +1,44 @@
+import java.util.*;
+class Node {
+    int data;
+    Node next;
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+class CLL {
+    Node head = null;
+    Node temp = null;
+    void insert(int data) {
+        Node newnode = new Node(data);
+        if (head == null) {
+            head = newnode;
+            temp = newnode;
+        } else {
+            temp.next = newnode;
+            newnode.next = head;
+            temp = newnode;
+        }
+    }
+    void display(){
+        Node temp = head;
+        while(temp.next != head){
+            System.out.print(temp.data+ " ");
+            temp = temp.next;
+        }
+        System.out.print(temp.data);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        CLL obj = new CLL();
+        for (int i = 0; i < size; i++) {
+            int val = sc.nextInt();
+            obj.insert(val);
+        }
+        obj.display();
+    }
+}
