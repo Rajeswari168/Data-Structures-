@@ -1,0 +1,71 @@
+import java.util.*;
+class Node {
+    int data;
+    Node next;
+    Node(int data) {
+        this.data = data;
+        next = null;
+    }
+}
+class SLL {
+    Node head = null;
+    Node temp = null;
+    void create(int data) {
+        Node newnode = new Node(data);
+        if (head == null) {
+            head = newnode;
+            temp = newnode;
+        }
+        temp.next = newnode;
+        temp = newnode;
+    }
+    void deletion_at_front() {
+        Node temp = head;
+        head = head.next;
+        temp.next=null;
+    }
+
+    void deletion_at_end() {
+        Node temp = head;
+        while (temp.next.next != null) {
+            temp = temp.next;
+        }
+        temp.next = null;
+    }
+
+    void deleteAtPosition(int p) {
+        Node temp = head;
+        for (int i = 1; i < p - 1; i++) {
+            temp = temp.next;
+        }
+        if (temp.next != null) {
+            temp.next = temp.next.next;
+        }
+    }
+    void display() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        SLL obj = new SLL();
+        for (int i = 0; i < size; i++) {
+            int val=sc.nextInt();
+            obj.create(val);
+        }  
+        obj.deletion_at_front();
+        obj.display();          
+        obj.deletion_at_end();
+        obj.display();
+        int pos = sc.nextInt();
+        obj.deleteAtPosition(pos);
+        obj.display();
+    }
+}
