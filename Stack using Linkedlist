@@ -1,0 +1,59 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data = data;
+        this.next = null;
+    }
+}
+class Main{
+    Node top;
+    public void push(int data){
+        Node newnode = new Node(data);
+        if(top==null){
+            top=newnode;
+        }else{
+            newnode.next=top;
+            top=newnode;
+        }
+    }
+    public void pop(){
+        if(top == null){
+            System.out.println("Underflow");
+        }else{
+            top = top.next;
+        }
+    }
+    public void peek(){
+        if(top == null){
+            System.out.println("Underflow");
+        }else{
+            System.out.println(top.data);
+        }
+    }
+    public void display(){
+        if(top == null){
+            System.out.println("Underflow");
+        }
+        Node temp = top;
+        while(temp != null){
+            System.out.println(temp.data);
+            temp = temp.next;
+        }
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        Main obj = new Main();
+        while(true){
+            int m = sc.nextInt();
+            if(m == -1)
+            break;
+            obj.push(m);
+        }
+        obj.pop();
+        obj.display();
+        obj.peek();
+        obj.display();
+    }
+}
