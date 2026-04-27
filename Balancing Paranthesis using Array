@@ -1,0 +1,32 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        Stack<Character> st = new Stack<>();
+        int i;
+        for(i = 0; i < input.length(); i++){
+            char c = input.charAt(i);
+            if(c == '('){
+                st.push(')');
+            }
+            else if(c == '{'){
+                st.push('}');
+            }
+            else if(c == '['){
+                st.push(']');
+            }
+            else{
+                if(st.empty() || c != st.pop()){
+                    System.out.println("Invalid Expression");
+                    return;
+                }
+            }
+        }
+        if(st.empty()){
+            System.out.println("Valid Expression");
+        }else{
+            System.out.println("Invalid Expression");
+        }
+    }
+}
